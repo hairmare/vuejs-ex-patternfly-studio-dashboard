@@ -6,6 +6,12 @@
   <link rel="stylesheet" href="https://unpkg.com/c3/c3.css">
   <link rel="stylesheet" href="https://unpkg.com/vue-patternfly/dist/vue-patternfly.css">
   <link rel="stylesheet" href="https://unpkg.com/prismjs/themes/prism.css">
+  <style>
+    .card-pf-body audio,
+    .card-pf-body img {
+      width: -webkit-fill-available
+    }
+  </style>
 </head>
 <body>
   <pf-layout id="app" :flex="true" :icons="true" :collapsable="true">
