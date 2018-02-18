@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/patternfly/dist/css/patternfly.css">
+  <link rel="stylesheet" href="https://unpkg.com/patternfly/dist/css/patternfly-additions.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/c3/c3.css">
+  <link rel="stylesheet" href="https://unpkg.com/vue-patternfly/dist/vue-patternfly.css">
+  <link rel="stylesheet" href="https://unpkg.com/prismjs/themes/prism.css">
+</head>
+<body>
+  <pf-layout id="app" :flex="true" :icons="true" :collapsable="true">
+    <router-link slot="brand" to="/" :exact="true" class="navbar-brand">
+      <span class="navbar-brand-name">RaBe Live-Studio</span>
+    </router-link>
+
+    <template slot="vertical-menu">
+      <router-link tag="li" class="list-group-item" active-class="active" to="/" :exact="true">
+        <a>
+          <span class="fa fa-tachometer" title="Dashboard"></span>
+          <span class="list-group-item-value">Dashboard</span>
+        </a>
+      </router-link>
+      <router-link tag="li" icon="pficon-settings" active-class="active" class="list-group-item" to="/settings" :exact="true">
+        <a>
+          <span class="pficon pficon-settings" title="Settings"></span>
+          <span class="list-group-item-value">Settings</span>
+        </a>
+      </router-link>
+    </template>
+
+    <router-view></router-view>
+  </pf-layout>
+
+  <script src="https://unpkg.com/d3@3/d3.min.js"></script>
+  <script src="https://unpkg.com/c3/c3.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://unpkg.com/prismjs/prism.js"></script>
+  <script src="https://unpkg.com/vuex/dist/vuex.min.js"></script>
+  <script src="https://unpkg.com/vue-patternfly/dist/vue-patternfly.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
