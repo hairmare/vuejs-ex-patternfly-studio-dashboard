@@ -1,16 +1,4 @@
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-
 Vue.use(Vuex)
-
-function audioSource() {
-  var context = new AudioContext()
-  return {
-    src: 'https://stream.rabe.ch/livestream/rabe-low.opus',
-    webAudio: {
-      context: context,
-    }
-  }
-}
 
 const store = new Vuex.Store({
   state: {
@@ -19,18 +7,23 @@ const store = new Vuex.Store({
         id: 1,
         hostname: 'test-01',
         stream: {
-          video: 'https://raw.githubusercontent.com/radiorabe/rabe-artwork/master/dab/mot/dab-mot-rabe-logo.png',
-          audio: audioSource('audio')
+          video: {
+            src: 'https://raw.githubusercontent.com/radiorabe/rabe-artwork/master/dab/mot/dab-mot-rabe-logo.png',
+          },
+          audio: {
+            src: 'https://stream.rabe.ch/livestream/rabe-low.opus',
+          }
         },
       },
       {
         id: 2,
         hostname: 'test-02',
         stream: {
-          video: 'https://raw.githubusercontent.com/radiorabe/rabe-artwork/master/dab/mot/dab-mot-rabe-logo.png',
+          video: {
+            src: 'https://raw.githubusercontent.com/radiorabe/rabe-artwork/master/dab/mot/dab-mot-rabe-logo.png',
+          },
           audio: {
             src: 'https://stream.rabe.ch/livestream/rabe-low.opus',
-            context: new AudioContext()
           }
         }
       },
@@ -38,19 +31,15 @@ const store = new Vuex.Store({
         id: 3,
         hostname: 'test-03',
         stream: {
-          video: 'https://raw.githubusercontent.com/radiorabe/rabe-artwork/master/dab/mot/dab-mot-rabe-logo.png',
+          video: {
+            src: 'https://raw.githubusercontent.com/radiorabe/rabe-artwork/master/dab/mot/dab-mot-rabe-logo.png',
+          },
           audio: {
             src: 'https://stream.rabe.ch/livestream/rabe-low.opus',
-            context: new AudioContext()
           }
         }
       }
     ]
-  },
-  mutations: {
-    add_server(state, new_server) {
-      server.push(new_server)
-    }
   }
 })
 
@@ -67,8 +56,8 @@ const Dashboard = {
         <div class="row row-cards-pf">
           <div class="col-md-4" v-for="system in systems">
             <pf-card :title="system.hostname">
-              <img :src="system.stream.video"/>
-              <audio ref="audio" @timeupdate="onTimeUpdateListener" controls :src="system.stream.audio.src"></audio>
+              <img :src="system.stream.video.src"/>
+              <audio ref="audio" controls :src="system.stream.audio.src"></audio>
             </pf-card>
           </div>
         </div>
@@ -79,15 +68,7 @@ const Dashboard = {
     return {
       systems: store.state.systems
     }
-  },
-  methods: {
-    onTimeUpdateListener() {
-      this.currentTime = this.$refs.audio.currentTime
-    }
   }
-}
-
-const OutsideBroadcastCard = {
 }
 
 const Settings = {
